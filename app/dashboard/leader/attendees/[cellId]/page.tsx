@@ -8,13 +8,6 @@ type Props = {
   };
 };
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  attended: boolean;
-  status?: "pending" | "confirmed";
-}
 export default async function Page({ params }: Props) {
   const { cellId } = await params;
   return (

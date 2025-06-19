@@ -25,9 +25,11 @@ const Header = () => {
         <Link href="/dashboard/leader" className="flex items-center gap-2">
           <Image src={churchLogo} height={50} width={50} alt="church_logo" />
           <div>
-            <h1 className="font-semibold text-[17px]">Cell Dashboard</h1>
-            <p className="font-light text-[14px]">
-              Alpha Cell - Weekly attendance and reporting
+            <h1 className="font-semibold text-[15px] lg:text-[17px]">
+              Record Ministry Dashboard
+            </h1>
+            <p className="font-light hidden lg:block text-[14px]">
+              Attendance data management and oversight
             </p>
           </div>
         </Link>
@@ -42,7 +44,7 @@ const Header = () => {
               <DropdownMenuTrigger className="flex items-center outline-none cursor-pointer gap-2.5">
                 <User />{" "}
                 <span className="font-light text-[15px] hidden lg:block">
-                  Pastor Tutu
+                  Elder Gideon
                 </span>
                 <ChevronDown size={15} className=" hidden lg:block" />
               </DropdownMenuTrigger>
@@ -50,7 +52,7 @@ const Header = () => {
                 <DropdownMenuLabel>leader@church.com</DropdownMenuLabel>
                 <DropdownMenuLabel className="flex">
                   <div className="bg-[#30961c]/15 text-xs py-0.5 px-3 rounded-xl text-[#30961c]">
-                    cell leader
+                    Record Ministry
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuLabel>Pastor Tutu</DropdownMenuLabel>

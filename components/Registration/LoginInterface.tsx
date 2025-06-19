@@ -57,7 +57,7 @@ const LoginInterface = () => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      await router.push("/dashboard/leader");
+      await router.push("/dashboard/record-taker");
       toast.success("Authentication successful. You're logged in.", {
         style: { backgroundColor: "#093317", color: "white" },
         duration: 4000,
