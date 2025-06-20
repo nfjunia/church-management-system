@@ -22,7 +22,10 @@ const Header = () => {
   return (
     <div className="w-full fixed left-0 px-5 right-0 top-0 z-20 h-[80px] border  bg-white">
       <div className="w-full flex items-center h-full mx-auto justify-between max-w-[1300px]">
-        <Link href="/dashboard/leader" className="flex items-center gap-2">
+        <Link
+          href="/dashboard/record-taker"
+          className="flex items-center gap-2"
+        >
           <Image src={churchLogo} height={50} width={50} alt="church_logo" />
           <div>
             <h1 className="font-semibold text-[15px] lg:text-[17px]">

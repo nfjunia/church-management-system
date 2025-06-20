@@ -18,6 +18,7 @@ import { Send } from "lucide-react";
 import React from "react";
 
 const page = async ({ params }: { params: { id: string } }) => {
+  const { id } = await params;
   return (
     <div className="w-full bg-neutral-100 min-h-screen pt-16">
       <Header />

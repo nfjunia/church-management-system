@@ -57,8 +57,8 @@ export default function QuickActions() {
     },
     {
       icon: Users,
-      title: "Missing Reports",
-      route: "/dashboard/record-taker",
+      title: "Cell Leaders",
+      route: "/dashboard/record-taker/cell-leaders",
       description: "Browse member information",
     },
   ];

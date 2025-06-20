@@ -159,7 +159,6 @@ const LoginInterface = () => {
               ) : (
                 <span>Sign in</span>
               )}
-              {!isLoading && <ArrowRight />}
             </Button>
           </form>
         </Form>
