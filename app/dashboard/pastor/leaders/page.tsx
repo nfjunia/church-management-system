@@ -61,7 +61,7 @@ const page = () => {
       <div className="mt-10 w-full mx-auto max-w-[1300px] ">
         <div className=" grid grid-cols-1 lg:grid-cols-2 gap-2.5 justify-between">
           <h1 className="font-bold text-xl">List Of All Cell Members</h1>
-          <div className="relative flex-wrap flex items-center">
+          <div className="relative flex items-center">
             <Search className="absolute left-2" size={18} />
             <Input placeholder="Search user.." className="bg-white pl-8 pr-3" />
           </div>
@@ -84,7 +84,6 @@ const page = () => {
                           .join("")}
                       </AvatarFallback>
                     </Avatar>
-
                     <div>
                       <p className="font-semibold text-sm text-gray-900">
                         {leader.name}
@@ -148,7 +147,7 @@ const page = () => {
                                   <TableHead>Name</TableHead>
                                   <TableHead>Phone</TableHead>
                                   <TableHead>Email</TableHead>
-                                  <TableHead>Join Date</TableHead>
+                                  <TableHead>CreatedAt</TableHead>
                                 </TableRow>
                               </TableHeader>
                               <TableBody>

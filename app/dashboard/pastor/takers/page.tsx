@@ -19,10 +19,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ArrowLeft, Eye, Pencil, Search, Trash2, X } from "lucide-react";
+import {
+  ArrowLeft,
+  Eye,
+  Pencil,
+  Search,
+  Trash2,
+  X,
+  ArrowDownUp,
+} from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const recordTakers = [
   {
@@ -65,7 +74,7 @@ const recordTakers = [
     id: 4,
     fullName: "David Brown",
     phoneNumber: "+1 (555) 456-7890",
-    email: "",
+    email: "davidbrown@gmail.com",
     leader: "Elder Davis",
     address: "321 Elm St, Springfield",
     gender: "Male",
@@ -126,14 +135,61 @@ const page = () => {
           </div>
         </div>
         <Table className="px-5">
-          <TableHeader>
-            <TableRow className="font-bold text-[16px]">
-              <TableHead className="w-[140px]">Full name</TableHead>
-              <TableHead>Phone number</TableHead>
-              <TableHead>Email address</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>CreatedAt</TableHead>
-              <TableHead>Action</TableHead>
+          <TableHeader className="">
+            <TableRow className="font-bold text-[14px]">
+              <TableHead>
+                <div>
+                  <Checkbox className="mb-2" />
+                </div>
+              </TableHead>
+              <TableHead className="w-[140px]">
+                <div className="flex items-center gap-1.5">
+                  Full name{" "}
+                  <span>
+                    <ArrowDownUp size={15} />
+                  </span>
+                </div>
+              </TableHead>
+              <TableHead>
+                <div className="flex items-center gap-1.5">
+                  Phone number
+                  <span>
+                    <ArrowDownUp size={15} />
+                  </span>
+                </div>
+              </TableHead>
+              <TableHead>
+                <div className="flex items-center gap-1.5">
+                  Email address
+                  <span>
+                    <ArrowDownUp size={15} />
+                  </span>
+                </div>
+              </TableHead>
+              <TableHead>
+                <div className="flex items-center gap-1.5">
+                  Status
+                  <span>
+                    <ArrowDownUp size={15} />
+                  </span>
+                </div>
+              </TableHead>
+              <TableHead>
+                <div className="flex items-center gap-1.5">
+                  CreatedAt
+                  <span>
+                    <ArrowDownUp size={15} />
+                  </span>
+                </div>
+              </TableHead>
+              <TableHead className="">
+                <div className="flex items-center gap-1.5">
+                  Action
+                  <span>
+                    <ArrowDownUp size={17} />
+                  </span>
+                </div>
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody className="px-5">
@@ -143,8 +199,10 @@ const page = () => {
                   key={recordTaker.id}
                   className="px-5 text-neutral-500"
                 >
-                  <TableCell className=" flex items-center gap-1.5">
-                    <span className="bg-[#30961c] w-1.5 h-1.5 rounded-full" />
+                  <TableCell>
+                    <Checkbox />
+                  </TableCell>
+                  <TableCell>
                     <p>{recordTaker.fullName}</p>
                   </TableCell>
                   <TableCell>{recordTaker.phoneNumber}</TableCell>
@@ -167,11 +225,8 @@ const page = () => {
                         <span className="text-[11px]">edit</span>
                       </div>
                       <AlertDialog>
-                        <AlertDialogTrigger className="border border-red-600 px-2 flex gap-1 cursor-pointer rounded-sm py-1 items-center">
-                          <Trash2 size={14} color="red" />
-                          <span className="text-[11px] text-red-600">
-                            delete
-                          </span>
+                        <AlertDialogTrigger className=" px-2 flex gap-1 cursor-pointer rounded-sm py-1 items-center">
+                          <Trash2 size={18} color="red" />
                         </AlertDialogTrigger>
                         <AlertDialogContent>
                           <AlertDialogHeader>
@@ -212,9 +267,7 @@ const page = () => {
             >
               <div className="bg-white relative p-5 rounded-md lg:w-[600px] ">
                 <div className="py-3">
-                  <h1 className="font-bold">
-                    Record Taker Details Complete information for Sarah Johnson
-                  </h1>
+                  <h1 className="font-bold">Record Taker Details</h1>
                   <p className="font-light">
                     Complete information for {selectedRecordTaker.fullName}
                   </p>
