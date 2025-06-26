@@ -10,23 +10,11 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Clock,
-  Plus,
-  Users,
-  Send,
-  ChevronDownIcon,
-  X,
-  PlusCircle,
-} from "lucide-react";
+
+import { Clock, Users, Send, X, Calendar } from "lucide-react";
 import DatePicker from "react-datepicker";
 import { AnimatePresence, motion } from "framer-motion";
-import { Calendar } from "../ui/calendar";
+
 import {
   Select,
   SelectContent,
@@ -37,41 +25,54 @@ import {
 import "react-datepicker/dist/react-datepicker.css";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { Textarea } from "../ui/textarea";
 
 export default function QuickActions() {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [date, setDate] = useState<Date | undefined>(undefined);
+  const [agenda, setAgenda] = useState<string>("");
+
   const navigate = useRouter();
 
   const quickActions = [
     {
       icon: Clock,
-      route: "/dashboard/record-taker",
+      route: "",
       title: "View History",
       description: "Review past attendance records",
     },
     {
       icon: Users,
       title: "Cell Leaders",
-      route: "/dashboard/record-taker/cell-leaders",
+      route: "/dashboard/pastor/leaders",
       description: "Browse member information",
     },
     {
-      icon: Plus,
-      title: "Add Member",
-      route: "/dashboard/record-taker/member",
+      icon: Users,
+      title: "All Record Takers",
+      route: "/dashboard/pastor/takers",
       description: "Browse member information",
     },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const fakeCellId = "100";
-    if (!date || !date.toLocaleString()) {
+
+    if (!selectedDate || !selectedDate.toLocaleString()) {
       toast.error("Please select a date for the cell.", {
+        style: {
+          backgroundColor: "#6b0000",
+          color: "white",
+          border: "1px solid #fcc2c2",
+          borderRadius: "8px",
+          zIndex: 1,
+        },
+        duration: 4000,
+      });
+      return;
+    } else if (!agenda) {
+      toast.error("Please fill in the textArea", {
         style: {
           backgroundColor: "#6b0000",
           color: "white",
@@ -85,12 +86,12 @@ export default function QuickActions() {
     }
     setIsLoading(true);
     setTimeout(() => {
-      toast.success("Cell created successfully.", {
+      toast.success("Church review meeting scheduled successfully..", {
         style: { backgroundColor: "#093317", color: "white" },
         duration: 4000,
       });
       setIsLoading(false);
-      navigate.push(`/dashboard/${fakeCellId}`);
+      setIsVisible(false);
     }, 3000);
   };
 
@@ -102,10 +103,11 @@ export default function QuickActions() {
           <div className="bg-white py-7 md:p-6 rounded-md">
             <CardHeader className="space-y-2">
               <CardTitle className="text-2xl font-semibold text-black">
-                Add Cell Leader
+                Add Record Taker
               </CardTitle>
               <CardDescription className="text-neutral-600 mb-2 font-medium">
-                Grow Your Cell, One Soul at a Time
+                Assign someone to help keep accurate records of attendance,
+                decisions, and growth within the church
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -152,7 +154,6 @@ export default function QuickActions() {
             </CardContent>
           </div>
 
-          {/* Quick Actions */}
           <div className="bg-white  py-6 pb-10 md:p-6 rounded-md">
             <CardHeader className="space-y-2">
               <CardTitle className="text-2xl font-semibold text-black">
@@ -164,39 +165,33 @@ export default function QuickActions() {
             </CardHeader>
             <CardContent className="space-y-4">
               {quickActions.map((action, index) => (
-                <Button
+                <button
                   key={index}
-                  variant="ghost"
                   onClick={() => navigate.push(action.route as string)}
-                  className="w-full bg-[#0fa2f7]/10 hover:bg-[#0fa2f7]/10 justify-start cursor-pointer h-auto p-4 border border-[#0fa2f7] text-left"
+                  className="w-full bg-[#0fa2f7]/10 flex rounded-md px-4 items-center gap-3 hover:bg-[#0fa2f7]/10 justify-start cursor-pointer h-auto py-2 border border-[#0fa2f7] text-left"
                 >
                   <action.icon className="w-5 h-5 mr-3 text-[#0fa2f7] flex-shrink-0" />
                   <div className="flex flex-col items-start">
-                    <span className="text-[#0fa2f7] font-medium">
-                      {action.title}
-                    </span>
+                    <span className="text-[#0fa2f7]">{action.title}</span>
                   </div>
-                </Button>
+                </button>
               ))}
-              <Button
-                variant="ghost"
+              <button
                 onClick={() => setIsVisible(!isVisible)}
-                className="w-full bg-[#0fa2f7]/10 hover:bg-[#0fa2f7]/10 justify-start cursor-pointer h-auto p-4 border border-[#0fa2f7] text-left"
+                className="w-full bg-[#0fa2f7]/10 flex rounded-md px-4 items-center gap-3 hover:bg-[#0fa2f7]/10 justify-start cursor-pointer h-auto py-2 border border-[#0fa2f7] text-left"
               >
-                <Plus className="w-5 h-5 mr-3 text-[#0fa2f7] flex-shrink-0" />
+                <Calendar className="w-5 h-5 mr-3 text-[#0fa2f7] flex-shrink-0" />
                 <div className="flex flex-col items-start">
-                  <span className="text-[#0fa2f7] font-medium">
-                    Create Service
-                  </span>
+                  <span className="text-[#0fa2f7]">Schedule Church Review</span>
                 </div>
-              </Button>
+              </button>
             </CardContent>
           </div>
-          {/** */}
+
           <AnimatePresence>
             {isVisible && (
               <motion.div
-                className="w-full h-full bg-[#030f03]/50 px-5 flex items-center justify-center z-20 fixed top-0 right-0 left-0 bottom-0"
+                className="w-full h-full bg-[#030f03]/50 px-5 flex items-center justify-center z-20 fixed inset-0"
                 key="modal"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -210,58 +205,35 @@ export default function QuickActions() {
                   />
                   <CardHeader className="space-y-2">
                     <CardTitle className="text-xl font-semibold text-black">
-                      Create New Service
+                      Schedule Church Review Meeting
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>
-                      <Label className="text-sm">Name</Label>
-                      <Input
-                        placeholder="Name of the service"
-                        required
-                        className="mt-2"
-                      />
-                    </div>
-                    <div>
-                      <Label className="text-sm">Theme</Label>
-                      <Input
-                        placeholder="Theme of the service"
-                        required
-                        className="mt-2"
-                      />
-                    </div>
-                    <div>
-                      <Label className="text-sm">Testimonies</Label>
-                      <Input
-                        placeholder="Testimonies of the service"
-                        required
-                        className="mt-2"
-                      />
-                    </div>
-                    <div>
-                      <Label className="text-sm">Offering</Label>
-                      <Input
-                        placeholder="Offering of the service"
-                        required
-                        className="mt-2"
-                      />
-                    </div>
-                    <div>
                       <Label className="text-sm">Date</Label>
-                      <DatePicker
-                        selected={selectedDate}
-                        onChange={(date) => setSelectedDate(date)}
-                        showTimeSelect
-                        dateFormat="Pp"
-                        className="border w-full rounded-md px-4 py-2"
+                      <div className="border w-full rounded-md py-2 px-3">
+                        <DatePicker
+                          selected={selectedDate}
+                          onChange={(date) => setSelectedDate(date)}
+                          showTimeSelect
+                          dateFormat="Pp"
+                          placeholderText="select date and time"
+                          className="w-full outline-none cursor-pointer"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Textarea
+                        onChange={(e) => setAgenda(e.target.value)}
+                        placeholder="Meeting Agenda (optional)"
                       />
                     </div>
+
                     <Button
                       onClick={handleSubmit}
                       className="w-full bg-[#0fa2f7] cursor-pointer hover:bg-[#0fa2f9]"
                     >
-                      <PlusCircle />
-                      {isLoading ? "Creating cell..." : "Create cell"}
+                      {isLoading ? "Submitting..." : "Submit"}
                     </Button>
                   </CardContent>
                 </div>

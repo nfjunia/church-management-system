@@ -50,9 +50,9 @@ export default function QuickActions() {
 
   const quickActions = [
     {
-      icon: Clock,
+      icon: Plus,
       route: "/dashboard/leader/attendees",
-      title: "View Attendance History",
+      title: "Add Attendance",
       description: "Review past attendance records",
     },
     {
@@ -60,6 +60,12 @@ export default function QuickActions() {
       title: "List of all current members",
       route: "/dashboard/leader/members",
       description: "Browse member information",
+    },
+    {
+      icon: Clock,
+      route: "/dashboard/leader/attendance-history",
+      title: "View Attendance History",
+      description: "Review past attendance records",
     },
   ];
 

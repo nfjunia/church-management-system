@@ -22,12 +22,17 @@ const Header = () => {
   return (
     <div className="w-full fixed left-0 px-5 right-0 top-0 z-20 h-[80px] border  bg-white">
       <div className="w-full flex items-center h-full mx-auto justify-between max-w-[1300px]">
-        <Link href="/dashboard/leader" className="flex items-center gap-2">
+        <Link
+          href="/dashboard/record-taker"
+          className="flex items-center gap-2"
+        >
           <Image src={churchLogo} height={50} width={50} alt="church_logo" />
           <div>
-            <h1 className="font-semibold text-[17px]">Cell Dashboard</h1>
-            <p className="font-light text-[14px] lg:block hidden">
-              Alpha Cell - Weekly attendance and reporting
+            <h1 className="font-semibold text-[15px] lg:text-[17px]">
+              Kabod Network Dashboard
+            </h1>
+            <p className="font-light hidden lg:block text-[14px]">
+              Network performance and management overview
             </p>
           </div>
         </Link>
@@ -42,18 +47,18 @@ const Header = () => {
               <DropdownMenuTrigger className="flex items-center outline-none cursor-pointer gap-2.5">
                 <User />{" "}
                 <span className="font-light text-[15px] hidden lg:block">
-                  Pastor Tutu
+                  Pastor David Jnr
                 </span>
                 <ChevronDown size={15} className=" hidden lg:block" />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuLabel>leader@church.com</DropdownMenuLabel>
+                <DropdownMenuLabel>pastor@church.com</DropdownMenuLabel>
                 <DropdownMenuLabel className="flex">
                   <div className="bg-[#30961c]/15 text-xs py-0.5 px-3 rounded-xl text-[#30961c]">
-                    cell leader
+                    Pastor
                   </div>
                 </DropdownMenuLabel>
-                <DropdownMenuLabel>Pastor Tutu</DropdownMenuLabel>
+                <DropdownMenuLabel>Pastor David jnr</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Profile</DropdownMenuItem>
                 <DropdownMenuItem>Billing</DropdownMenuItem>

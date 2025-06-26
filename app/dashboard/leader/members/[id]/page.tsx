@@ -14,16 +14,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Send } from "lucide-react";
+import { ArrowLeft, Send } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 const page = async ({ params }: { params: { id: string } }) => {
   const { id } = await params;
   return (
     <div className="w-full bg-neutral-100 min-h-screen pt-16">
-      <Header />
+      <Link
+        href={"/dashboard/leader/members"}
+        className="flex px-3.5 py-1.5 shadow bg-white border rounded-md absolute top-4 left-5 items-center gap-2"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        <span>Back</span>
+      </Link>{" "}
       <div className="w-full px-5 max-w-[1300px] mx-auto">
-        <div className="bg-white w-full lg:w-[500px] py-2.5 md:p-6 mt-8 rounded-md">
+        <div className="bg-white w-full lg:w-[500px] mx-auto py-2.5 md:p-6 mt-8 rounded-md">
           <CardHeader className="space-y-2">
             <CardTitle className="text-2xl font-semibold text-black">
               Edit A Member

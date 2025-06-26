@@ -1,4 +1,6 @@
 import Header from "@/components/leader/Header";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 type attendanceRecord = {
@@ -54,7 +56,13 @@ const page = () => {
   ];
   return (
     <div className="w-full min-h-screen pb-16 pt-20 px-5 bg-neutral-100">
-      <Header />
+      <Link
+        href={"/dashboard/leader"}
+        className="flex px-3.5 py-1.5 bg-white border shadow rounded-md absolute top-4 left-5 items-center gap-2"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        <span className="text-black">Back</span>
+      </Link>{" "}
       <div className="w-full max-w-[1300px] bg-white mx-auto mt-8 rounded-md p-6 ">
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">

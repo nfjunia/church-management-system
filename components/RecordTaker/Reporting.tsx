@@ -51,8 +51,8 @@ export default function Reporting() {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-[1300px] m-8 rounded-md bg-white text-gray-900 p-4 sm:p-6">
-      <div className="max-w-6xl mx-auto space-y-6">
+    <div className="mx-auto w-full max-w-[1300px] m-8 rounded-md bg-white text-gray-900 pb-9 py-4">
+      <div className="w-full px-5 mx-auto space-y-6">
         <div className="space-y-2">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
             Cell Leader Reporting Status
@@ -85,7 +85,7 @@ export default function Reporting() {
                         }
                         className={
                           leader.status === "submitted"
-                            ? "bg-[#30961c]/15 hover:bg-green-700 text-[#30961c]"
+                            ? "bg-[#30961c]/15 text-[#30961c]"
                             : "bg-red-600/15 hover:bg-red-700 text-red-600"
                         }
                       >

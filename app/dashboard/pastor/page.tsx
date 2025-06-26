@@ -1,8 +1,7 @@
-import Header from "@/components/RecordTaker/Header";
-import QuickActions from "@/components/RecordTaker/QuickActions";
-import Reporting from "@/components/RecordTaker/Reporting";
-import Stacts from "@/components/RecordTaker/Stacts";
-import Summary from "@/components/RecordTaker/Summary";
+import Summary from "@/components/pastor/Alerts";
+import Header from "@/components/pastor/Header";
+import QuickActions from "@/components/pastor/QuickActions";
+import Stacts from "@/components/pastor/Stacts";
 import React from "react";
 
 const page = () => {
@@ -13,7 +12,7 @@ const page = () => {
         <Stacts
           totals={"89%"}
           timerange="Celebration Sercices"
-          type="service"
+          type="user"
           action="11/12 cells"
         />
         <Stacts

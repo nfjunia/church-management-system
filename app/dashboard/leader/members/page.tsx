@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import { Search, Trash2, Pencil } from "lucide-react";
+import { Search, Trash2, Pencil, Eye, ArrowLeft } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -33,21 +33,39 @@ const Tablebody = [
     adress: "penkwaase",
     createdAt: "11/06/2025",
     gender: "male",
+    office: "deacon",
   },
   {
     id: 2,
-    fullName: "Yaw Solo",
+    fullName: "Yaw Solomon",
     phone: "0531942973",
     email: "nfjunia@gmail.com",
-    adress: "penkwaase",
+    adress: "new town",
     createdAt: "7/08/2025",
-    gender: "female",
+    gender: "male",
+    office: "leader",
+  },
+  {
+    id: 3,
+    fullName: "Elder Blessing",
+    phone: "0534747197",
+    email: "elderblessin@mail.com",
+    adress: "adomase road",
+    createdAt: "11/08/2025",
+    gender: "male",
+    office: "Elder",
   },
 ];
 const page = () => {
   return (
     <div className="min-h-screen w-full px-5 pt-[120px] bg-neutral-100">
-      <Header />
+      <Link
+        href={"/dashboard/leader"}
+        className="flex px-3.5 py-1.5 shadow bg-white border rounded-md absolute top-4 left-5 items-center gap-2"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        <span>Back</span>
+      </Link>{" "}
       <div className="w-full p-5 rounded-t-md bg-white mx-auto max-w-[1300px]">
         <div className="flex items-center pb-5 justify-between">
           <h1 className="font-bold text-[16px] lg:text-xl">
@@ -87,18 +105,27 @@ const page = () => {
                   <TableCell>{member.createdAt}</TableCell>
                   <TableCell>{member.gender}</TableCell>
                   <TableCell className="text-right w-[130px]">
-                    <div className="flex w-full gap-2.5">
+                    <div className="flex w-full gap-1.5">
+                      <Link
+                        href={`/dashboard/leader/members/${member.id}/view`}
+                        className="border px-2 flex gap-1 rounded-sm border-neutral-500 py-1 items-center"
+                      >
+                        <Eye size={14} className="cursor-pointer" />
+                        <span className="text-[11px]">view</span>
+                      </Link>
                       <Link
                         href={`/dashboard/leader/members/${member.id}`}
-                        className="border px-3 flex gap-1 rounded-sm border-neutral-500 py-1 items-center"
+                        className="border px-2 flex gap-1 rounded-sm border-neutral-500 py-1 items-center"
                       >
-                        <Pencil size={18} className="cursor-pointer" />
-                        <span className="text-xs">edit</span>
+                        <Pencil size={14} className="cursor-pointer" />
+                        <span className="text-[11px]">edit</span>
                       </Link>
                       <AlertDialog>
-                        <AlertDialogTrigger className="border px-3 flex gap-1 cursor-pointer rounded-sm border-neutral-500 py-1 items-center">
-                          <Trash2 size={18} />
-                          <span className="text-xs">delete</span>
+                        <AlertDialogTrigger className="border border-red-600 px-2 flex gap-1 cursor-pointer rounded-sm py-1 items-center">
+                          <Trash2 size={14} color="red" />
+                          <span className="text-[11px] text-red-600">
+                            delete
+                          </span>
                         </AlertDialogTrigger>
                         <AlertDialogContent>
                           <AlertDialogHeader>

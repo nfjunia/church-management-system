@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { ArrowLeft } from "lucide-react";
 
 const page = () => {
   const router = useRouter();
@@ -47,7 +48,13 @@ const page = () => {
   if (!hasCell) {
     return (
       <div className="w-full min-h-screen flex items-center bg-neutral-100">
-        <Header />
+        <Link
+          href={"/dashboard/leader"}
+          className="flex px-3.5 py-1.5 border-neutral-400 bg-white border rounded-md absolute top-4 left-5 items-center gap-2"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          <span>Back</span>
+        </Link>{" "}
         <div className="max-w-md mx-auto mt-10 px-5">
           <div>
             <Image
